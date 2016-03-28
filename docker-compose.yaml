@@ -5,12 +5,14 @@ web:
    - db
    - traccar-mqtt
   ports:
-    - "8081:8082"
+    - "80:8082"
     - "10026:5005"
     - "10027:5027"
 
 traccar-mqtt:
   image: fleetr/traccar2mqtt
+  environment:
+    MQTT_URL:
   restart: unless-stopped
   ports:
     - "4000:4000"
