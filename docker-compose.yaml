@@ -18,12 +18,14 @@ traccar-mqtt:
     - "4000:4000"
 
 db:
-  image: postgres:9
+  image: mysql:5.7
   restart: unless-stopped
   environment:
-    POSTGRES_USER: traccar
-    POSTGRES_PASSWORD: traccar@fleetr
+    MYSQL_ROOT_PASSWORD: secret-root-pass
+    MYSQL_DATABASE: traccar
+    MYSQL_USER: traccar
+    MYSQL_PASSWORD: traccar@fleetr
   ports:
-    - "5432:5432"
+    - "3306:3306"
   volumes:
-    - /data/traccar/postgres/data:/var/lib/postgresql/data
+    - /data/traccar/mysql/data:/var/lib/mysql
