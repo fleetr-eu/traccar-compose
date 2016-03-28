@@ -1,31 +1,35 @@
-web:
-  image: fleetr/traccar
-  restart: unless-stopped
-  links:
-   - db
-   - traccar-mqtt
-  ports:
-    - "80:8082"
-    - "10026:5005"
-    - "10027:5027"
+version: '2'
 
-traccar-mqtt:
-  image: fleetr/traccar2mqtt
-  environment:
-    MQTT_URL:
-  restart: unless-stopped
-  ports:
-    - "4000:4000"
+services:
+  web:
+    image: fleetr/traccar
+    restart: unless-stopped
+    ports:
+      - "80:8082"
+      - "10026:5005"
+      - "10027:5027"
 
-db:
-  image: mysql:5.7
-  restart: unless-stopped
-  environment:
-    MYSQL_ROOT_PASSWORD: secret-root-pass
-    MYSQL_DATABASE: traccar
-    MYSQL_USER: traccar
-    MYSQL_PASSWORD: traccar@fleetr
-  ports:
-    - "3306:3306"
-  volumes:
-    - /data/traccar/mysql/data:/var/lib/mysql
+  traccar-mqtt:
+    image: fleetr/traccar2mqtt
+    environment:
+      MQTT_URL:
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+
+  db:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret-root-pass
+      MYSQL_DATABASE: traccar
+      MYSQL_USER: traccar
+      MYSQL_PASSWORD: traccar@fleetr
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/traccar/mysql/data:/var/lib/mysql
+
+networks:
+  default:
+    driver: bridge
