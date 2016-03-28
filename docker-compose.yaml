@@ -1,0 +1,27 @@
+web:
+  image: jksdua/traccar
+  restart: unless-stopped
+  links:
+   - db
+   - traccar-mqtt
+  ports:
+    - "8081:8082"
+    - "10026:5005"
+    - "10027:5027"
+
+traccar-mqtt:
+  image: fleetr/traccar2mqtt
+  restart: unless-stopped
+  ports:
+    - "4000:4000"
+
+db:
+  image: postgres:9
+  restart: unless-stopped
+  environment:
+    POSTGRES_USER: traccar
+    POSTGRES_PASSWORD: traccar@fleetr
+  ports:
+    - "5432:5432"
+  volumes:
+    - /data/traccar/postgres/data:/var/lib/postgresql/data
