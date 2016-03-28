@@ -1,5 +1,5 @@
 web:
-  image: jksdua/traccar
+  image: fleetr/traccar
   restart: unless-stopped
   links:
    - db
