@@ -28,8 +28,9 @@
     <entry key='database.url'>jdbc:postgresql://db:5432/traccar</entry>
     <entry key='database.user'>traccar</entry>
     <entry key='database.password'>traccar@fleetr</entry>
-
-    <entry key='database.changelog'>/opt/traccar/data/db.changelog-master.xml</entry>
+<!--
+-->
+    <entry key='database.changelog'>/opt/traccar/data/changelog-master.xml</entry>
 
     <entry key='database.selectServers'>
         SELECT * FROM server;

@@ -13,7 +13,10 @@ RUN unzip traccar-linux-64-3.4.zip && rm /usr/share/traccar/traccar-linux-64-3.4
 RUN ./traccar.run
 
 ADD traccar.xml /opt/traccar/conf/traccar.xml
+ADD data/changelog-3.3.xml /opt/traccar/data/changelog-3.3.xml
+ADD data/changelog-3.5.xml /opt/traccar/data/changelog-3.5.xml
+ADD data/changelog-master.xml /opt/traccar/data/changelog-master.xml
 
 EXPOSE 8082
 
-ENTRYPOINT /opt/traccar/bin/traccar start && tail -f /opt/traccar/logs/tracker-server.log
+ENTRYPOINT /opt/traccar/bin/traccar start && tail -f /opt/traccar/logs/tracker-server.log -f /opt/traccar/logs/wrapper.log.*
