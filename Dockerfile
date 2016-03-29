@@ -10,9 +10,9 @@ ADD https://github.com/tananaev/traccar/releases/download/v3.4/traccar-linux-64-
 
 RUN unzip traccar-linux-64-3.4.zip && rm /usr/share/traccar/traccar-linux-64-3.4.zip
 
-ADD traccar.xml /opt/traccar/conf/traccar.xml
-
 RUN ./traccar.run
+
+ADD traccar.xml /opt/traccar/conf/traccar.xml
 
 EXPOSE 8082
 
