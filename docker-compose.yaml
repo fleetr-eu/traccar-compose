@@ -12,7 +12,7 @@ services:
   traccar-mqtt:
     image: fleetr/traccar2mqtt
     environment:
-      MQTT_URL:
+      MQTT_URL: mqtt://192.168.40.130:10013
     restart: unless-stopped
     ports:
       - "4000:4000"
