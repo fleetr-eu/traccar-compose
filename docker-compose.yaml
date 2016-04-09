@@ -16,6 +16,8 @@ services:
     restart: unless-stopped
     ports:
       - "4000:4000"
+    volumes:
+      - /data/traccar2mqtt/data:/app/data
 
   db:
     image: postgres:9
