@@ -12,7 +12,7 @@ services:
   traccar-mqtt:
     image: fleetr/traccar2mqtt
     environment:
-      MQTT_URL: mqtt://192.168.40.130:10013
+      MQTT_URL: mqtt://mqtt:1883
     restart: unless-stopped
     ports:
       - "4000:4000"
@@ -30,6 +30,23 @@ services:
       - "5432:5432"
     volumes:
       - /data/traccar/postgres/data:/var/lib/postgresql/data
+
+  mqtt:
+    image: villlem/mqtt-server:latest
+    restart: unless-stopped
+    ports:
+     - "10028:1883"
+
+  mongo:
+    image: mongo:3
+    restart: unless-stopped
+    command: --replSet rs0
+    ports:
+     - "27017:27017"
+     - "28017:28017"
+    volumes:
+     - /data/fleetr/mongo/data:/data/db
+
 
 networks:
   default:
