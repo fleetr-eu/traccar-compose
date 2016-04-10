@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:8082"
-      - "10026:5005"
+      - "10026:5055"
       - "10027:5027"
 
   traccar-mqtt:
