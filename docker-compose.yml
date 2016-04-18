@@ -4,20 +4,13 @@ services:
   web:
     image: fleetr/traccar
     restart: unless-stopped
+    depends_on:
+      - db
+      - mqtt
     ports:
       - "80:8082"
       - "10026:5055"
       - "10027:5027"
-
-  traccar-mqtt:
-    image: fleetr/traccar2mqtt
-    environment:
-      MQTT_URL: mqtt://mqtt:1883
-    restart: unless-stopped
-    ports:
-      - "4000:4000"
-    volumes:
-      - /data/traccar2mqtt/data:/app/data
 
   db:
     image: postgres:9
@@ -32,7 +25,7 @@ services:
       - /data/traccar/postgres/data:/var/lib/postgresql/data
 
   mqtt:
-    image: villlem/mqtt-server:latest
+    image: greyarch/mosquitto
     restart: unless-stopped
     ports:
      - "10028:1883"
