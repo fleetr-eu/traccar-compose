@@ -55,6 +55,9 @@ services:
     image: mongo-express
     restart: unless-stopped
     hostname: mongo-express
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: 'mongo'
+      ME_CONFIG_BASICAUTH_PASSWORD: 'mongo@fleetr'
     ports:
       - "10031:8081"
 
