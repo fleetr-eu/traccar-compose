@@ -65,6 +65,8 @@ services:
     image: ictu/logspout
     restart: unless-stopped
     hostname: logspout
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     extra_hosts:
       - "elk:192.168.40.70"
     environment:
