@@ -65,8 +65,10 @@ services:
     image: ictu/logspout
     restart: unless-stopped
     hostname: logspout
+    extra_hosts:
+      - "elk:192.168.40.70"
     environment:
-      ROUTE_URIS: logstash://jenkins:5454
+      ROUTE_URIS: logstash://elk:5454
 
 networks:
   default:
