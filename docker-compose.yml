@@ -61,6 +61,13 @@ services:
     ports:
       - "10031:8081"
 
+  logspout:
+    image: ictu/logspout
+    restart: unless-stopped
+    hostname: logspout
+    environment:
+      ROUTE_URIS: logstash://jenkins:5454
+
 networks:
   default:
     driver: bridge
