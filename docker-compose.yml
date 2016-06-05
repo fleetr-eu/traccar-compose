@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
     hostname: mqtt
     ports:
-     - "10028:1883"
+      - "10028:1883"
 
   mongo:
     image: mongo:3
@@ -39,10 +39,18 @@ services:
     hostname: mongo
     command: --replSet rs0
     ports:
-     - "27017:27017"
-     - "28017:28017"
+      - "27017:27017"
+      - "28017:28017"
     volumes:
-     - /data/fleetr/mongo/data:/data/db
+      - /data/fleetr/mongo/data:/data/db
+
+  processor:
+    image: fleetr/processor
+    restart: unless-stopped
+    hostname: processor
+    depends_on:
+      - mongo
+      - mqtt
 
   pgweb:
     image: donnex/pgweb
