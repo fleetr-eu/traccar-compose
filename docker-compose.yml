@@ -12,6 +12,8 @@ services:
       - "80:8082"
       - "10026:5055"
       - "10027:5027"
+    extra_hosts:
+      - "nominatim:192.168.40.70"
 
   db:
     image: postgres:9
